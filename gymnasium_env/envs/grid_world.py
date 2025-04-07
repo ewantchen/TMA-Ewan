@@ -46,6 +46,7 @@ class GridWorldEnv(gymnasium.Env) : #on précise les modes de rendu pour notre e
 
     def _get_obs(self) : #Donne l'information de la position lors de step et reset sur la positon
         return{"agent": self.agent_location, "target" : self.target_location}
+    
     def _get_info(self) : #donne l'information de la difference de position lors de step et reset 
         return {
             "distance" : np.linalg.norm(
