@@ -14,7 +14,7 @@ class actions(Enum) : #on donne toutes les actions possibles pour les agents
     DOWN = 3
 
 class GridWorldEnv(gymnasium.Env) : #on précise les modes de rendu pour notre environnement
-    metadata = {"render_modes" : ["human", "rgb_array"], "render_fps" : 4}
+    metadata = {"render_modes" : ["human", "rgb_array"], "render_fps" : 10}
 
     #on utilise __init__ pour notre grille
     def __init__(self, render_mode=None, size=5) : #on précise aussi qu'aucun rendu peut-être possible
@@ -63,9 +63,7 @@ class GridWorldEnv(gymnasium.Env) : #on précise les modes de rendu pour notre e
 
         self.target_location = self.agent_location.copy() #On change sa position tant qu'elle est égale à celle de l'agent
         while np.array_equal(self.target_location, self.agent_location) :
-            self.target_location = self.np_random.integers(
-                0, self.size, size=2, dtype=int
-            )
+            self.target_location = self.np_random.integers(0, self.size, size=2, dtype=int)
         observation = self._get_obs()
         info = self._get_info()
         
@@ -74,7 +72,8 @@ class GridWorldEnv(gymnasium.Env) : #on précise les modes de rendu pour notre e
 
         return observation, info
 
-    def step(self,action) : #contient la majorité de la logique de l'environnement
+    #contient la majorité de la logique de l'environnement
+    def step(self,action) :
         direction = self.action_to_direction[action] #on défini la direction selon l'action
 
         self.agent_location = np.clip(
@@ -128,6 +127,7 @@ class GridWorldEnv(gymnasium.Env) : #on précise les modes de rendu pour notre e
             (self.agent_location + 0.5) * pix_square_size,
             pix_square_size / 3. 
         )
+        
         #On fait des lignes de la grille
         for x in range(self.size + 1) : 
             pygame.draw.line(

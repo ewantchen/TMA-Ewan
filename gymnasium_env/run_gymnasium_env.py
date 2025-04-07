@@ -18,6 +18,8 @@ for _ in range(50):  # Run for 50 steps
     if terminated:
         obs, info = env.reset()
     
-    time.sleep(0.5)  # Pause so you can see the moves
+    time.sleep(0.1)  # Pause so you can see the moves
+
+print(obs, env)
 
 env.close()
