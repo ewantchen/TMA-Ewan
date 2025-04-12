@@ -16,10 +16,9 @@ for _ in range(50):  # Run for 50 steps
     obs, reward, terminated, truncated, info = env.step(action)
     
     if terminated:
+        print(obs, env)
         obs, info = env.reset()
     
     time.sleep(0.1)  # Pause so you can see the moves
-
-print(obs, env)
 
 env.close()
