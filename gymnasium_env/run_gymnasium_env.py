@@ -1,7 +1,7 @@
 # run_gymnasium_env.py
 
 import gymnasium
-import gymnasium_env
+import gymnasium_env.envs as envs
 import time
 
 env = gymnasium.make('gymnasium_env:gymnasium_env/GridWorld', render_mode="human")
